@@ -12,7 +12,7 @@ const UserRoutes = () => {
 
   const element = useRoutes([
     {
-      path: "/",
+      path: "/dashboard",
       element: <DashBoardHome />,
     },
     // {

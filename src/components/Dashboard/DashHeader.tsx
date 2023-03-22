@@ -1,24 +1,35 @@
+/** @format */
+
 import React from "react";
 import styled from "styled-components";
 import DashSiderBar from "./DashSiderBar";
 import pics from "../Assets/Medical-logo.png";
+import { UseAppDispach, useAppSelector } from "../Global/Store";
+import { useNavigate } from "react-router-dom";
+import { logout } from "../Global/ReduxState";
 
 const DashHeader = () => {
+  const dispatch = UseAppDispach();
+  const navigate = useNavigate();
+  const getUser = useAppSelector((state) => state.currentUser);
+
   return (
     <div>
       <Head>
         <Logo>LOGO</Logo>
-
+        <button
+          onClick={() => {
+            dispatch(logout());
+            navigate("/");
+          }}>
+          logout
+        </button>
         <User>
+          <Icon>{/* < /> */}</Icon>
 
-          <Icon>
-            {/* < /> */}
-          </Icon>
+          <UserLetter>{getUser?.name.charAt(0).toUpperCase()}</UserLetter>
 
-          <UserLetter>F</UserLetter>
-
-          <Username>Favour Yusuf</Username>
-
+          <Username>{getUser?.name}</Username>
         </User>
       </Head>
     </div>
@@ -40,30 +51,30 @@ export default DashHeader;
 const Icon = styled.div``;
 
 const Username = styled.div`
-font-weight: 700;
-font-size: 18px;
-color: white;
+  font-weight: 700;
+  font-size: 18px;
+  color: white;
 `;
 
 const UserLetter = styled.div`
-width: 30px;
-height: 30px;
-border-radius: 50%;
-font-weight: 700;
-color: white;
-border: 2px solid white;
-margin-right:15px;
-margin-left:15px;
-text-align: center;
-display: flex;
-justify-content: center;
-align-items: center;
+  width: 30px;
+  height: 30px;
+  border-radius: 50%;
+  font-weight: 700;
+  color: white;
+  border: 2px solid white;
+  margin-right: 15px;
+  margin-left: 15px;
+  text-align: center;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 `;
 
 const User = styled.div`
-display: flex;
-align-items: center;
-margin-right: 25px;
+  display: flex;
+  align-items: center;
+  margin-right: 25px;
 `;
 
 const Logo = styled.h5`
@@ -75,11 +86,10 @@ const Logo = styled.h5`
 
 const Side = styled.div``;
 
-
 const Head = styled.div`
   height: 70px;
   width: 100%;
-  background-color: #6C63FF;
+  background-color: #6c63ff;
   color: black;
   display: flex;
   align-items: center;

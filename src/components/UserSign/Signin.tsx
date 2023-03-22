@@ -46,8 +46,8 @@ const Signin = () => {
 
   const Submit = handleSubmit(async (data) => {
     posting.mutate(data);
-    // reset();
-    // navigate("/dashboard");
+    reset();
+    navigate("/dashboard");
   });
 
   return (
@@ -61,7 +61,7 @@ const Signin = () => {
           </Right>
 
           <Left>
-            <Form>
+            <Form onSubmit={Submit}>
               <div
                 style={{
                   fontSize: "20px",

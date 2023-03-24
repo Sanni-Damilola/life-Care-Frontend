@@ -2,33 +2,22 @@
 
 import React from "react";
 import styled from "styled-components";
+import { useAppSelector } from "../Global/Store";
 import DashSiderBar from "./DashSiderBar";
-import pics from "../Assets/Medical-logo.png";
-import { UseAppDispach, useAppSelector } from "../Global/Store";
-import { useNavigate } from "react-router-dom";
-import { logout } from "../Global/ReduxState";
+// import pics from "../Assets/Medical-logo.png";
 
 const DashHeader = () => {
-  const dispatch = UseAppDispach();
-  const navigate = useNavigate();
   const getUser = useAppSelector((state) => state.currentUser);
 
   return (
     <div>
       <Head>
-        <Logo>LOGO</Logo>
-        <button
-          onClick={() => {
-            dispatch(logout());
-            navigate("/");
-          }}>
-          logout
-        </button>
+        <Logo>LIFE CARE</Logo>
+
         <User>
           <Icon>{/* < /> */}</Icon>
 
           <UserLetter>{getUser?.name.charAt(0).toUpperCase()}</UserLetter>
-
           <Username>{getUser?.name}</Username>
         </User>
       </Head>
@@ -53,16 +42,19 @@ const Icon = styled.div``;
 const Username = styled.div`
   font-weight: 700;
   font-size: 18px;
-  color: white;
+  height: 30px;
+  text-transform: capitalize;
+  // color: white;
 `;
 
 const UserLetter = styled.div`
   width: 30px;
+  cursor: auto;
   height: 30px;
   border-radius: 50%;
   font-weight: 700;
-  color: white;
-  border: 2px solid white;
+  // color: white;
+  border: 2px solid #000000;
   margin-right: 15px;
   margin-left: 15px;
   text-align: center;
@@ -79,7 +71,7 @@ const User = styled.div`
 
 const Logo = styled.h5`
   font-size: 25px;
-  color: white;
+  // color: #a8ff37;
   font-weight: 700;
   margin-left: 25px;
 `;
@@ -89,11 +81,15 @@ const Side = styled.div``;
 const Head = styled.div`
   height: 70px;
   width: 100%;
-  background-color: #6c63ff;
+  // background-color: #6C63FF;
+  // background-color: rgb(0, 33, 37);
+  // background-color: #1f1f1f;
+  background-color: white;
   color: black;
   display: flex;
   align-items: center;
   justify-content: space-between;
-  box-shadow: rgba(0, 0, 0, 0.15) 1.95px 1.95px 2.6px;
+  // box-shadow: rgba(0, 0, 0, 0.15) 1.95px 1.95px 2.6px;
   position: fixed;
+  z-index: 400;
 `;
